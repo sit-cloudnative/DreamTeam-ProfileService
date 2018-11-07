@@ -1,13 +1,20 @@
 package com.sit.cloudnative.ProfileService.Profile;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.sit.cloudnative.ProfileService.Favorite.Favorite;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.UniqueElements;
 
 @Table(name = "profile")
@@ -21,7 +28,10 @@ public class Profile{
     @NotNull
     private String lastname;
     @NotNull
-    private Favorite favoriteSubject;
+    @OneToMany(fetch=FetchType.EAGER)
+    @JoinColumn(name = "favorites_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Favorite> favoriteSubject;
     @NotNull
     private Date startStuiesAt;
 
