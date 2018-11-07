@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
 import com.sit.cloudnative.ProfileService.Favorite.Favorite;
 
 import org.hibernate.annotations.OnDelete;
@@ -19,7 +20,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 @Table(name = "profile")
 @Entity
-public class Profile{
+public class Profile extends SerializableSerializer{
     @UniqueElements
     @Id
     private String studentId;

@@ -6,9 +6,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+
 @Entity
 @Table(name="favorites")
-public class Favorite{
+public class Favorite extends SerializableSerializer{
 
     @Id
     private Long id;

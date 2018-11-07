@@ -21,4 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FavoriteController {
 
+    @Autowired
+    private FavoriteService favoriteService;
+
+    @GetMapping("/favorite/{studentId}")
+    public ResponseEntity<Favorite> getFavoriteById(@PathVariable long studnetId){
+        Favorite stuFavorite = favoriteService.getFavoriteByStudentId(studnetId);
+        return new ResponseEntity<Favorite>(stuFavorite,HttpStatus.OK);
+    }
+
 }

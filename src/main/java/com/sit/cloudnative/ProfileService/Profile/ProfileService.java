@@ -13,6 +13,20 @@ public class ProfileService {
   @Autowired
   ProfileRepository profileRepo;
 
-  
+  public List<Profile> getAllProfile(){
+    return profileRepo.findAll();
+  }
+
+  public Profile getProfileById(long id){
+    return profileRepo.getOne(id);
+  }
+
+  public void deleteProfileById(Profile profile){
+    profileRepo.delete(profile);
+  }
+
+  public Profile createProfile(Profile profile){
+    return profileRepo.save(profile);
+  }
 
 }
