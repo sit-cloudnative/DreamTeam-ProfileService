@@ -20,5 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ProfileController {
-   
+   @GetMapping("/profiles")
+   public ResponseEntity<Profile> getAllProfile(){
+       return null;
+   }
 }
