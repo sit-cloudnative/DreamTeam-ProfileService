@@ -30,10 +30,17 @@ public class FavoriteController {
         return new ResponseEntity<Favorite>(stuFavorite,HttpStatus.OK);
     }
 
-    @PostMapping("/favorite/{studentId}")
-    public ResponseEntity<Favorite> createFavorite(@PathVariable long studnetId,@RequestBody Favorite favorite){
+    @PostMapping("/favorite")
+    public ResponseEntity<Favorite> createFavorite(@RequestBody Favorite favorite){
         favoriteService.createFavorite(favorite);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+ 
+    @DeleteMapping("/favorite/{id}")
+    public ResponseEntity<Favorite> deleteFavorite(@RequestBody Favorite favorite){
+        favoriteService.deleteFavorite(favorite);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }

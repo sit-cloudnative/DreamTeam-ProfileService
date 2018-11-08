@@ -1,6 +1,8 @@
 package com.sit.cloudnative.ProfileService.Favorite;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +15,7 @@ import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
 public class Favorite extends SerializableSerializer{
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private long subjectId;
@@ -61,5 +64,17 @@ public class Favorite extends SerializableSerializer{
      */
     public void setSubjectId(long subjectId) {
         this.subjectId = subjectId;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public long getId(){
+        return this.id;
+    }
+
+    public String toString(){
+        return ""+this.subjectId+" "+this.subjectName+" "+this.id+" "+this.studentId;   
     }
 }

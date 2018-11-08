@@ -18,6 +18,7 @@ public class FavoriteService {
   }
 
   public Favorite createFavorite(Favorite favorite){
+      System.out.print(favorite.toString());
       return favoriteRepo.save(favorite);
   }
 
