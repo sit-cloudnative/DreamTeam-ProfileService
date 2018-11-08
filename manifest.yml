@@ -1,0 +1,7 @@
+applications:
+- name: dreamteam-cloudnativ-profileservice
+  memory: 512MB
+  host: profile-service
+  path: .\target\ProfileService-0.0.1-SNAPSHOT.jar
+  services:
+    - HelloCompose

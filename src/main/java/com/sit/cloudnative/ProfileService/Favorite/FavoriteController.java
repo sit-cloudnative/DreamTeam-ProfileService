@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 /**
  * GET /profile/favorite/{id}
@@ -25,9 +26,9 @@ public class FavoriteController {
     private FavoriteService favoriteService;
 
     @GetMapping("/favorite/{studentId}")
-    public ResponseEntity<Favorite> getFavoriteById(@PathVariable long studnetId){
-        Favorite stuFavorite = favoriteService.getFavoriteByStudentId(studnetId);
-        return new ResponseEntity<Favorite>(stuFavorite,HttpStatus.OK);
+    public ResponseEntity<List<Favorite>> getFavoriteById(@PathVariable long studentId){
+        List<Favorite> stuFavorite = favoriteService.getFavoriteByStudentId(studentId);
+        return new ResponseEntity<List<Favorite>>(stuFavorite,HttpStatus.OK);
     }
 
     @PostMapping("/favorite")
@@ -37,8 +38,8 @@ public class FavoriteController {
     }
  
     @DeleteMapping("/favorite/{id}")
-    public ResponseEntity<Favorite> deleteFavorite(@RequestBody Favorite favorite){
-        favoriteService.deleteFavorite(favorite);
+    public ResponseEntity<Favorite> deleteFavorite(@PathVariable long id){
+        favoriteService.deleteFavorite(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

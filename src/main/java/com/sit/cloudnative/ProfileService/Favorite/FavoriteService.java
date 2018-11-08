@@ -13,16 +13,16 @@ public class FavoriteService {
   @Autowired
   FavoriteRepository favoriteRepo;
 
-  public Favorite getFavoriteByStudentId(long studentId){
+  public List<Favorite> getFavoriteByStudentId(long studentId){
       return favoriteRepo.getByStudentId(studentId);
   }
 
   public Favorite createFavorite(Favorite favorite){
-      System.out.print(favorite.toString());
       return favoriteRepo.save(favorite);
   }
 
-  public void deleteFavorite(Favorite favorite){
-      favoriteRepo.delete(favorite);
+  public void deleteFavorite(long id){
+    Favorite targetFavorite = favoriteRepo.getOne(id);
+    favoriteRepo.delete(targetFavorite);
   }
 }

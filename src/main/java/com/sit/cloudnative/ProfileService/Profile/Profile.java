@@ -3,12 +3,15 @@ package com.sit.cloudnative.ProfileService.Profile;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
@@ -21,19 +24,17 @@ import org.hibernate.validator.constraints.UniqueElements;
 @Table(name = "profile")
 @Entity
 public class Profile extends SerializableSerializer{
-    @UniqueElements
     @Id
-    private String studentId;
+    private long studentId;
     @NotNull
     private String firstname;
     @NotNull
     private String lastname;
-    @NotNull
-    @OneToMany(fetch=FetchType.EAGER)
-    @JoinColumn(name = "favorites_id", nullable = false)
+    @OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name = "profile_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Favorite> favoriteSubject;
-    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startStuiesAt;
 
     /**
@@ -43,6 +44,20 @@ public class Profile extends SerializableSerializer{
         return firstname;
     }
 
+
+    /**
+     * @return the favoriteSubject
+     */
+    public List<Favorite> getFavoriteSubject() {
+        return favoriteSubject;
+    }
+
+    /**
+     * @param favoriteSubject the favoriteSubject to set
+     */
+    public void setFavoriteSubject(List<Favorite> favoriteSubject) {
+        this.favoriteSubject = favoriteSubject;
+    }
 
     /**
      * @return the startStuiesAt
@@ -75,14 +90,14 @@ public class Profile extends SerializableSerializer{
     /**
      * @return the studentId
      */
-    public String getStudentId() {
+    public long getStudentId() {
         return studentId;
     }
 
     /**
      * @param studentId the studentId to set
      */
-    public void setStudentId(String studentId) {
+    public void setStudentId(long studentId) {
         this.studentId = studentId;
     }
 
@@ -93,4 +108,7 @@ public class Profile extends SerializableSerializer{
         this.firstname = firstName;
     }
 
+    public String toString(){
+        return ""+this.firstname+" "+this.lastname+" "+this.studentId+" "+this.startStuiesAt;   
+    }
 }

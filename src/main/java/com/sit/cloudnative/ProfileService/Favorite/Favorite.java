@@ -16,13 +16,13 @@ public class Favorite extends SerializableSerializer{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @NotNull
     private long subjectId;
     @NotBlank
     private String subjectName;
     @NotNull
-    private Long studentId;
+    private long studentId;
     
     /**
      * @return the subjectId
