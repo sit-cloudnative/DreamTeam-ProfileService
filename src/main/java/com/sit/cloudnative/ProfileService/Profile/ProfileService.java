@@ -1,14 +1,11 @@
 package com.sit.cloudnative.ProfileService.Profile;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.sit.cloudnative.ProfileService.Favorite.Favorite;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 
 @Repository
 public class ProfileService {
@@ -16,7 +13,7 @@ public class ProfileService {
   @Autowired
   ProfileRepository profileRepo;
 
-  public List<Profile> getAllProfile(){
+  public List<Profile> getAllProfile() {
     return profileRepo.findAll();
   }
 
@@ -30,7 +27,7 @@ public class ProfileService {
     return targetProfile;
   }
 
-  public Profile createProfile(Profile profile){
+  public Profile createProfile(Profile profile) {
     return profileRepo.save(profile);
   }
 

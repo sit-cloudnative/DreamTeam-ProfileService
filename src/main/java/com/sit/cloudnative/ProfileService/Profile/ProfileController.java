@@ -2,8 +2,6 @@ package com.sit.cloudnative.ProfileService.Profile;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import com.sit.cloudnative.ProfileService.Favorite.Favorite;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ProfileController {
+
     @Autowired
     ProfileService profileService;
+    
     @GetMapping("/profiles")
     public ResponseEntity<List<Profile>> getAllProfile(){
         return new ResponseEntity<List<Profile>>(profileService.getAllProfile(),HttpStatus.OK);
