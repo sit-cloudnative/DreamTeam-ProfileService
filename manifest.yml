@@ -5,3 +5,5 @@ applications:
   path: .\target\ProfileService-2.1.0.RELEASE.jar
   services:
     - ComposeForProfileService
+env:
+    EUREKA_URL: http://dreamteam-discovery.mybluemix.net/eureka
